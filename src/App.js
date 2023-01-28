@@ -31,21 +31,21 @@ const initialFormErr = {
 }
 
 function App() {
-  const[formErr, setFormErr] = useState(initialFormErr)
+  const[formErrors, setFormErrors] = useState(initialFormErr)
   const[formValues, setFormValues] = useState(initialFormValues)
-  const[confirm, setConfirm] = useState(initialDisabled)
+  const[confirmation, setConfirmation] = useState(initialDisabled)
   const[disabled, setDisabled] = useState(initialDisabled)
 
   const setNewOrder = (newOrder) => {
-    setConfirm(newOrder)
+    setConfirmation(newOrder)
     setFormValues(initialFormValues)
   }
 
   const validate = (name, value) => {
     yup.reach(Schema, name)
       .validate(value)
-      .then(() => setFormErr({...formErr, [name]: ''}))
-      .catch(err => setFormErr({...formErr, [name]: err.errors[0]}))
+      .then(() => setFormErrors({...formErrors, [name]: ''}))
+      .catch(err => setFormErrors({...formErrors, [name]: err.errors[0]}))
   }
 
   const handleChange = (name, value) => {
@@ -82,7 +82,7 @@ function App() {
           <Form
             values={formValues}
             change={handleChange}
-            errors={formErr}
+            errors={formErrors}
             disabled='true'
             submit={formSubmit}
           />

@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 
 function Form(props) {
-    const { change, submit, values, disabled, err } = props;
+    const { change, submit, values, disabled, errors } = props;
     
     const history = useHistory()
 
@@ -30,7 +30,7 @@ function Form(props) {
                 <div className='form-group inputs'>
                     <h4>Customer Name:</h4>
 
-                    <label><p>{err.customerName}</p>
+                    <label><p>{errors.customerName}</p>
                         <input
                             type='text'
                             id='name-input'
@@ -40,7 +40,7 @@ function Form(props) {
                         />
                     </label>
 
-                    <label><p>{err.pizzaSize}</p>
+                    <label><p>{errors.pizzaSize}</p>
                         <select
                             id='size-dropdown'
                             onChange={onChange}
@@ -57,7 +57,59 @@ function Form(props) {
                     </label>
                 </div>
 
-                
+                <div className='form-group checkboxes'>
+                    <h4>Add-ons</h4>
+
+                    <label>Pepperoni
+                        <input
+                            type='checkbox'
+                            name='pepperoni'
+                            defaultChecked={values.pepperoni}
+                            onChange={onChange}
+                            data-test-id='pepperoni'
+                        />
+                    </label>
+
+                    <label>Sausage
+                        <input
+                            type='checkbox'
+                            name='sausage'
+                            defaultChecked={values.sausage}
+                            onChange={onChange}
+                        />
+                    </label>
+
+                    <label>Peppers
+                        <input
+                            type='checkbox'
+                            name='peppers'
+                            defaultChecked={values.peppers}
+                            onChange={onChange}
+                        />
+                    </label>
+
+                    <label>Mushrooms
+                        <input
+                            type='checkbox'
+                            name='mushrooms'
+                            defaultChecked={values.mushrooms}
+                            onChange={onChange}
+                        />
+                    </label>
+                </div>
+
+                <div className='form-group inputs'>
+                    <label>Special Instructions
+                        <input
+                            id='special-text'
+                            defaultValue={values.special}
+                            onChange={onChange}
+                            name='special'
+                            type='text'
+                        />
+                    </label>
+
+                </div>
             </div>
         </form>
     )
